@@ -1,0 +1,9 @@
+{
+  "appId": "com.aistudio.faustiarts.mrvxqk",
+  "appName": "Fausti Arts",
+  "webDir": "pwa",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

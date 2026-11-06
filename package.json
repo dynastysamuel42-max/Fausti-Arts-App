@@ -1,0 +1,17 @@
+{
+  "name": "fausti-arts",
+  "version": "1.0.0",
+  "description": "A professional creative studio platform for discovering services, requesting creative projects and managing creative work.",
+  "scripts": {
+    "cap:sync": "cap sync",
+    "cap:open": "cap open android",
+    "cap:build": "cap build android"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}
