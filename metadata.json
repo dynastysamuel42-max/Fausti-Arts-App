@@ -1,0 +1,6 @@
+{
+  "name": "Fausti Arts",
+  "description": "A professional creative studio platform for discovering services, requesting creative projects and managing creative work.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

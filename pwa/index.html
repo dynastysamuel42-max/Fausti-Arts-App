@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Fausti Arts • Creative Studio</title>
+  
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0C0C0E">
+  <meta name="background-color" content="#FFFFFF">
+
+  <!-- iOS / Apple Meta Tags & Icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Fausti Arts">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+
+  <style>
+    :root {
+      --bg: #0C0C0E;
+      --surface: #16161B;
+      --surface-card: #1E1E26;
+      --gold: #D4AF37;
+      --gold-light: #F3D270;
+      --text: #F8F7F4;
+      --text-muted: #A9A6A0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .container {
+      max-width: 480px;
+      width: 100%;
+      background: var(--surface);
+      border: 1.5px solid rgba(212, 175, 55, 0.5);
+      border-radius: 28px;
+      padding: 36px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    }
+    .logo-badge {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      margin: 0 auto 20px;
+      overflow: hidden;
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.35);
+    }
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 28px;
+      font-family: Georgia, serif;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .tagline {
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .install-box {
+      background: var(--surface-card);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .install-box h3 {
+      font-size: 15px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .install-box ol {
+      padding-left: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+      margin-bottom: 12px;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-light);
+      border: 1.5px solid var(--gold);
+    }
+    #install-banner {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-badge">
+      <img src="icons/icon-192x192.png" alt="Fausti Arts Emblem">
+    </div>
+    <h1>FAUSTI ARTS</h1>
+    <div class="tagline">“Your Imagination, Our Creation.”</div>
+    <p>A professional creative studio platform for discovering services, requesting creative projects and managing creative work.</p>
+
+    <!-- Custom Native Install Trigger (Android / Chrome) -->
+    <div id="install-banner">
+      <button class="btn btn-gold" id="btn-install">✦ Install Fausti Arts App</button>
+    </div>
+
+    <!-- iOS Add to Home Screen Instructions -->
+    <div class="install-box" id="ios-guide">
+      <h3>✦ iOS / iPhone Installation</h3>
+      <ol>
+        <li>Tap the <strong>Share</strong> button (box with an arrow) in Safari.</li>
+        <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+        <li>Tap <strong>Add</strong> in the top-right corner to install Fausti Arts.</li>
+      </ol>
+    </div>
+
+    <div class="install-box">
+      <h3>✦ Real Android APK / AAB Distribution</h3>
+      <p style="margin-bottom: 0; font-size: 13px;">
+        This application is also built as a native Android APK and App Bundle. You can download the installable APK directly or export the production package from the AI Studio menu.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then((reg) => console.log('[Fausti Arts] Service Worker registered:', reg.scope))
+          .catch((err) => console.error('[Fausti Arts] SW registration error:', err));
+      });
+    }
+
+    // PWA Install Prompt handling
+    let deferredPrompt;
+    const installBanner = document.getElementById('install-banner');
+    const btnInstall = document.getElementById('btn-install');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.style.display = 'block';
+    });
+
+    btnInstall.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('[Fausti Arts] User choice:', outcome);
+        deferredPrompt = null;
+        installBanner.style.display = 'none';
+      }
+    });
+
+    window.addEventListener('appinstalled', () => {
+      console.log('[Fausti Arts] App successfully installed!');
+      installBanner.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
