@@ -35,6 +35,11 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PhoneAndroid
 import androidx.compose.material.icons.filled.PhoneIphone
 import androidx.compose.material.icons.filled.Security
+import androidx.compose.material.icons.filled.ContactPhone
+import androidx.compose.ui.platform.LocalContext
+import com.example.util.ContactUtils
+import com.example.ui.components.FaustiHeadquartersCard
+import com.example.ui.components.ContactUsDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -89,6 +94,7 @@ fun SettingsScreen(
     var showAboutDialog by remember { mutableStateOf(false) }
     var showSupportDialog by remember { mutableStateOf(false) }
     var showInstallAppDialog by remember { mutableStateOf(false) }
+    var showContactUsDialog by remember { mutableStateOf(false) }
 
     var emailNotificationsEnabled by remember { mutableStateOf(true) }
     var pushNotificationsEnabled by remember { mutableStateOf(true) }
@@ -351,6 +357,13 @@ fun SettingsScreen(
                 )
 
                 SettingsListItem(
+                    icon = Icons.Default.ContactPhone,
+                    title = "Contact Us & Studio Headquarters",
+                    subtitle = "Official email, phone, WhatsApp & web portal",
+                    onClick = { showContactUsDialog = true }
+                )
+
+                SettingsListItem(
                     icon = Icons.Default.Info,
                     title = "About FAUSTI ARTS",
                     subtitle = "Agency story, philosophy & leadership",
@@ -474,6 +487,13 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp),
                         color = MaterialTheme.colorScheme.onSurface
                     )
+                    Spacer(modifier = Modifier.height(14.dp))
+
+                    FaustiHeadquartersCard(
+                        title = "STUDIO HEADQUARTERS",
+                        subtitle = "Global Creative Agency"
+                    )
+
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = { showAboutDialog = false },
@@ -489,6 +509,7 @@ fun SettingsScreen(
 
     // Help Dialog
     if (showSupportDialog) {
+        val context = LocalContext.current
         Dialog(onDismissRequest = { showSupportDialog = false }) {
             Surface(
                 shape = RoundedCornerShape(20.dp),
@@ -500,10 +521,17 @@ fun SettingsScreen(
                     Text("CLIENT SUPPORT & FAQS", style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold), color = GoldPrimary)
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "• How does quotation negotiation work?\nAfter submitting a request, our studio evaluates your brief. You can suggest your own price, explain your budget, and send counteroffers directly through the Negotiation tab.\n\n• How do revisions work?\nEvery project includes comprehensive revision tracking. Submit detailed notes, and our designers will update deliverables accordingly.\n\n• Direct Studio Support:\nEmail: commissions@faustiarts.com\nPhone: +1 (800) 412-FAUSTI",
+                        text = "• How does quotation negotiation work?\nAfter submitting a request, our studio evaluates your brief. You can suggest your own price, explain your budget, and send counteroffers directly through the Negotiation tab.\n\n• How do revisions work?\nEvery project includes comprehensive revision tracking. Submit detailed notes, and our designers will update deliverables accordingly.",
                         style = MaterialTheme.typography.bodySmall.copy(lineHeight = 20.sp),
                         color = MaterialTheme.colorScheme.onSurface
                     )
+                    Spacer(modifier = Modifier.height(14.dp))
+
+                    FaustiHeadquartersCard(
+                        title = "DIRECT STUDIO SUPPORT",
+                        subtitle = "Official Contact Channels"
+                    )
+
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = { showSupportDialog = false },
@@ -515,6 +543,12 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+
+    if (showContactUsDialog) {
+        ContactUsDialog(
+            onDismiss = { showContactUsDialog = false }
+        )
     }
 }
 

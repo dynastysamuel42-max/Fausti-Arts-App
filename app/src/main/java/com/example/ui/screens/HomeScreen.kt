@@ -64,6 +64,8 @@ import com.example.ui.FaustiViewModel
 import com.example.ui.theme.GoldDark
 import com.example.ui.theme.GoldLight
 import com.example.ui.theme.GoldPrimary
+import com.example.ui.components.FaustiHeadquartersCard
+import com.example.ui.components.FaustiFooter
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -623,64 +625,18 @@ fun HomeScreen(
             }
         }
 
-        // Section: Studio Contact Information & Credentials
+        // Section: Studio Headquarters & Official Contact Channels
         item {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("contact_section"),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ),
-                border = BorderStroke(1.dp, GoldPrimary.copy(alpha = 0.3f))
-            ) {
-                Column(modifier = Modifier.padding(20.dp)) {
-                    Text(
-                        text = "FAUSTI ARTS STUDIO HEADQUARTERS",
-                        style = MaterialTheme.typography.titleSmall.copy(
-                            fontFamily = FontFamily.Serif,
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 0.8.sp
-                        ),
-                        color = GoldPrimary
-                    )
+            FaustiHeadquartersCard(
+                title = "FAUSTI ARTS STUDIO HEADQUARTERS",
+                subtitle = "Official Digital Studio & Creative Hub"
+            )
+        }
 
-                    Spacer(modifier = Modifier.height(12.dp))
-
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Email, contentDescription = null, tint = GoldLight, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Text("commissions@faustiarts.com", style = MaterialTheme.typography.bodyMedium)
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Call, contentDescription = null, tint = GoldLight, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Text("+1 (800) 412-FAUSTI", style = MaterialTheme.typography.bodyMedium)
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.LocationOn, contentDescription = null, tint = GoldLight, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Text("Fausti Design Tower, Creative District 7", style = MaterialTheme.typography.bodyMedium)
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Language, contentDescription = null, tint = GoldLight, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Text("www.faustiarts.com", style = MaterialTheme.typography.bodyMedium)
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
+        // Section: Official Website Footer
+        item {
+            FaustiFooter()
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

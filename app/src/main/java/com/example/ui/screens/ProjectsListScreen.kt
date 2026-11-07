@@ -36,6 +36,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import com.example.ui.components.FaustiHeadquartersCard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -245,6 +246,14 @@ fun ProjectsListScreen(
                         onClick = { onSelectProject(project.id) }
                     )
                 }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(10.dp))
+                FaustiHeadquartersCard(
+                    title = "CLIENT SUPPORT & HEADQUARTERS",
+                    subtitle = "Direct communication with Fausti Arts art directors"
+                )
             }
 
             item {
