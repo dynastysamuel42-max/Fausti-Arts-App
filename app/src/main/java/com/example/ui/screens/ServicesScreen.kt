@@ -242,13 +242,13 @@ fun ServiceCard(
             ) {
                 Column {
                     Text(
-                        text = "STARTING FROM",
+                        text = "PRICING & TERMS",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
-                        text = "$${String.format(Locale.US, "%.0f", service.startingPrice)}",
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                        text = "Get a Custom Quote",
+                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
                         color = GoldPrimary
                     )
                 }
@@ -286,7 +286,7 @@ fun ServiceCard(
                 Icon(Icons.Default.AutoAwesome, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Request This Service",
+                    text = "Request a Quote",
                     fontWeight = FontWeight.Bold
                 )
             }

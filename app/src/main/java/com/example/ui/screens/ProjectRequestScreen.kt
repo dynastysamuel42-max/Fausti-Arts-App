@@ -78,7 +78,7 @@ fun ProjectRequestScreen(
     var description by remember { mutableStateOf("") }
     var attachments by remember { mutableStateOf("") }
     var deadline by remember { mutableStateOf("2026-11-30") }
-    var budgetText by remember { mutableStateOf("600") }
+    var budgetText by remember { mutableStateOf("") }
     var specialInstructions by remember { mutableStateOf("") }
     var categoryDropdownExpanded by remember { mutableStateOf(false) }
 
@@ -329,7 +329,8 @@ fun ProjectRequestScreen(
             OutlinedTextField(
                 value = budgetText,
                 onValueChange = { budgetText = it },
-                label = { Text("Estimated Budget ($) *") },
+                label = { Text("Budget Guideline ($)") },
+                placeholder = { Text("e.g. 500 (or custom)") },
                 leadingIcon = { Icon(Icons.Default.MonetizationOn, contentDescription = null, tint = GoldLight) },
                 modifier = Modifier
                     .weight(1f)
@@ -440,7 +441,7 @@ fun ProjectRequestScreen(
             Icon(Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(20.dp))
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Submit Project Request",
+                text = "Request a Custom Quote",
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
             )
         }

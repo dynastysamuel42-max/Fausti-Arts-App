@@ -205,7 +205,11 @@ fun AppNavigation(
                         )
 
                         AppScreen.PORTFOLIO -> PortfolioScreen(
-                            viewModel = viewModel
+                            viewModel = viewModel,
+                            onRequestProject = { category ->
+                                selectedServiceCategoryForRequest = category
+                                currentScreen = AppScreen.PROJECT_REQUEST
+                            }
                         )
 
                         AppScreen.ADMIN_DASHBOARD -> AdminDashboardScreen(

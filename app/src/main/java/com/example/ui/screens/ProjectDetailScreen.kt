@@ -449,14 +449,18 @@ fun ProjectOverviewTab(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column {
-                            Text("INITIAL BUDGET", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                            Text("$${String.format(Locale.US, "%.0f", project.budget)}", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold), color = MaterialTheme.colorScheme.onSurface)
+                            Text("TARGET GUIDELINE", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(
+                                text = if (project.budget > 0) "$${String.format(Locale.US, "%.0f", project.budget)}" else "Custom Quote",
+                                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
                         }
                         Column {
-                            Text("AGREED VALUATION", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text("AGREED QUOTE", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             val agreed = project.agreedPrice
                             Text(
-                                text = if (agreed != null) "$${String.format(Locale.US, "%.0f", agreed)}" else "In Negotiation",
+                                text = if (agreed != null) "$${String.format(Locale.US, "%.0f", agreed)}" else "Custom Quote Pending",
                                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                                 color = GoldPrimary
                             )

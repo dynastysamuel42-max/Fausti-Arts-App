@@ -408,16 +408,29 @@ fun ProjectCardItem(
             ) {
                 Column {
                     Text(
-                        text = "VALUATION",
+                        text = if (project.agreedPrice != null) "AGREED QUOTATION" else "QUOTATION STATUS",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    val priceDisplay = project.agreedPrice ?: project.currentQuotation ?: project.budget
-                    Text(
-                        text = "$${String.format(Locale.US, "%.0f", priceDisplay)}",
-                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
-                        color = GoldPrimary
-                    )
+                    if (project.agreedPrice != null) {
+                        Text(
+                            text = "$${String.format(Locale.US, "%.0f", project.agreedPrice)}",
+                            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                            color = GoldPrimary
+                        )
+                    } else if (project.status == "Price Negotiation") {
+                        Text(
+                            text = "Private Quote in Discussion",
+                            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                            color = GoldLight
+                        )
+                    } else {
+                        Text(
+                            text = "Get a Custom Quote",
+                            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                            color = GoldPrimary
+                        )
+                    }
                 }
 
                 Row(verticalAlignment = Alignment.CenterVertically) {

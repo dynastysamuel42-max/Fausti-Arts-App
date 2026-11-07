@@ -76,6 +76,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
     val currentUser by viewModel.currentUser.collectAsState()
+    val services by viewModel.allServices.collectAsState()
     val portfolioItems by viewModel.allPortfolio.collectAsState()
     val announcements by viewModel.allAnnouncements.collectAsState()
     val testimonials by viewModel.allTestimonials.collectAsState()
@@ -209,7 +210,7 @@ fun HomeScreen(
                             ) {
                                 Icon(Icons.Default.AutoAwesome, contentDescription = null, modifier = Modifier.size(18.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Request Project", fontWeight = FontWeight.Bold)
+                                Text("Request a Quote", fontWeight = FontWeight.Bold)
                             }
 
                             OutlinedButton(
@@ -247,6 +248,102 @@ fun HomeScreen(
                             Icon(Icons.Default.FolderSpecial, contentDescription = null, modifier = Modifier.size(18.dp), tint = GoldPrimary)
                             Spacer(modifier = Modifier.width(6.dp))
                             Text("View Creative Portfolio Gallery", fontWeight = FontWeight.Medium)
+                        }
+                    }
+                }
+            }
+        }
+
+        // Section: Studio Disciplines & Bespoke Quotations
+        item {
+            Column {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = "CREATIVE DISCIPLINES",
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                fontFamily = FontFamily.Serif,
+                                fontWeight = FontWeight.Bold,
+                                letterSpacing = 1.sp
+                            ),
+                            color = GoldPrimary
+                        )
+                        Text(
+                            text = "Every commission is bespoke. Get a custom quote for your vision.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+
+                    Text(
+                        text = "Explore All",
+                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                        color = GoldLight,
+                        modifier = Modifier
+                            .clickable { onExploreServices() }
+                            .padding(4.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(14.dp)
+                ) {
+                    items(services.take(4)) { s ->
+                        Card(
+                            modifier = Modifier
+                                .width(260.dp)
+                                .clickable { onExploreServices() },
+                            shape = RoundedCornerShape(18.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surface
+                            ),
+                            border = BorderStroke(1.dp, GoldPrimary.copy(alpha = 0.3f))
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = s.name,
+                                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    maxLines = 1
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = s.description,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 2
+                                )
+                                Spacer(modifier = Modifier.height(12.dp))
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Surface(
+                                        shape = RoundedCornerShape(8.dp),
+                                        color = GoldPrimary.copy(alpha = 0.15f)
+                                    ) {
+                                        Text(
+                                            text = "Get a Custom Quote",
+                                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                            color = GoldPrimary,
+                                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                                        )
+                                    }
+
+                                    Text(
+                                        text = "Discuss Project",
+                                        style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                        color = GoldLight
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -418,18 +515,25 @@ fun HomeScreen(
 
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
                                         text = item.clientName,
                                         style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
                                         color = GoldPrimary
                                     )
-                                    Text(
-                                        text = item.completionDate,
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Surface(
+                                        shape = RoundedCornerShape(6.dp),
+                                        color = GoldPrimary.copy(alpha = 0.15f)
+                                    ) {
+                                        Text(
+                                            text = "Get a Custom Quote",
+                                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                            color = GoldLight,
+                                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                        )
+                                    }
                                 }
                             }
                         }
